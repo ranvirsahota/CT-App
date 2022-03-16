@@ -1,6 +1,6 @@
 # ct_app
 
-A demo cognitive training app built for the elderly
+A cognitive traning app for those 60 years or older with no illness
 
 ## Getting Started
 
