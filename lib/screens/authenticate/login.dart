@@ -1,6 +1,6 @@
 import 'package:ct_app/services/auth.dart';
 import 'package:flutter/material.dart';
-import '../../services/auth.dart';
+import 'package:ct_app/shared/fixed_styles.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,10 +20,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style = ElevatedButton.styleFrom(
-        primary:Colors.pink,
-        textStyle: const TextStyle(color:Colors.white, fontSize: 20)
-    );
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -33,6 +29,7 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               const SizedBox(height: 20.0),
               TextFormField(
+                decoration: textFormFieldDecoration.copyWith(hintText: "Enter your email"),
                 validator: (val) => val!.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
@@ -40,6 +37,8 @@ class _LoginState extends State<Login> {
               ),
               const SizedBox(height: 20.0),
               TextFormField(
+                decoration: textFormFieldDecoration.copyWith(hintText: "Enter your password"),
+
                 obscureText: true,
                 validator: (val) => val!.length < 6 ? 'Enter a password 6+ chars long' : null,
                 onChanged: (val) {
@@ -48,7 +47,7 @@ class _LoginState extends State<Login> {
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                  style: style,
+                  style: elevatedButtonStyle,
                   child: const Text('Sign In'),
                   onPressed: () async {
                     if(_formKey.currentState!.validate()){

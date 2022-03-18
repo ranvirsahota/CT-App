@@ -1,7 +1,6 @@
-import 'package:ct_app/services/auth.dart';
 import 'package:flutter/material.dart';
-
-import '../../services/auth.dart';
+import 'package:ct_app/services/auth.dart';
+import 'package:ct_app/shared/fixed_styles.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -20,10 +19,6 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style = ElevatedButton.styleFrom(
-        primary:Colors.pink,
-        textStyle: const TextStyle(color:Colors.white, fontSize: 20)
-    );
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -33,6 +28,7 @@ class _RegisterState extends State<Register> {
             children: <Widget>[
               const SizedBox(height: 20.0),
               TextFormField(
+                decoration: textFormFieldDecoration.copyWith(hintText: "Enter your email"),
                 validator: (val) => val!.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
@@ -40,15 +36,16 @@ class _RegisterState extends State<Register> {
               ),
               const SizedBox(height: 20.0),
               TextFormField(
+
                 obscureText: true,
-                validator: (val) => val!.length < 4 ? 'Enter a password at least 4 chars long' : null,
+                decoration: textFormFieldDecoration.copyWith(hintText: "Enter your password"),
                 onChanged: (val) {
                   setState(() => password = val);
                 },
               ),
               const SizedBox(height: 20.0),
               ElevatedButton(
-                  style: style,
+                  style: elevatedButtonStyle,
                   child: const Text(
                     'Register',
                   ),
