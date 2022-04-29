@@ -18,27 +18,19 @@ class _AuthenticateState extends State<Authenticate> {
     const Login(),
     const Register(),
   ];
-
   void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
-
   void _onItemTapped(int index) {
     setState(() {
       pageController.jumpToPage(index);
     });
-
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: const Text("Login"),
-        ),
         body: PageView(
           controller: pageController,
           children: screens,
@@ -48,11 +40,11 @@ class _AuthenticateState extends State<Authenticate> {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.gamepad),
+              icon: Icon(Icons.login),
               label: 'Login',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: Icon(Icons.app_registration),
               label: 'Register',
             ),
           ],

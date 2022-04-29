@@ -14,12 +14,16 @@ class _RegisterState extends State<Register> {
   String error = '';
 
   // text field state
-  String email = '';
+  String username = '';
   String password = '';
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Register"),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
@@ -28,17 +32,18 @@ class _RegisterState extends State<Register> {
             children: <Widget>[
               const SizedBox(height: 20.0),
               TextFormField(
-                decoration: textFormFieldDecoration.copyWith(hintText: "Enter your email"),
-                validator: (val) => val!.isEmpty ? 'Enter an email' : null,
+                decoration: textFormFieldDecoration.copyWith(hintText: "Choose a username"),
+                validator: (val) => val!.isEmpty ? 'Must choose a username to register' : null,
                 onChanged: (val) {
-                  setState(() => email = val);
+                  setState(() => username = val);
                 },
               ),
               const SizedBox(height: 20.0),
               TextFormField(
-
                 obscureText: true,
-                decoration: textFormFieldDecoration.copyWith(hintText: "Enter your password"),
+                decoration: textFormFieldDecoration.copyWith(hintText: "Choose a password"),
+                validator: (val) => val!.isEmpty ? 'Must choose a password to register' : null,
+
                 onChanged: (val) {
                   setState(() => password = val);
                 },
@@ -51,10 +56,10 @@ class _RegisterState extends State<Register> {
                   ),
                   onPressed: () async {
                     if(_formKey.currentState!.validate()){
-                      dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                      dynamic result = await _auth.registerWithEmailAndPassword(username, username+'@example.com', password);
                       if(result == null) {
                         setState(() {
-                          error = 'Please supply a valid email';
+                          error = 'could not create an account with current input';
                         });
                       }
                     }

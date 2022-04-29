@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "300124642417",
-    "project_id": "cognitive-training-app",
-    "storage_bucket": "cognitive-training-app.appspot.com"
+    "project_number": "257953670571",
+    "project_id": "cognitive-training-app-3a9cb",
+    "storage_bucket": "cognitive-training-app-3a9cb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:300124642417:android:58f2a3e5559ef8f2038fd0",
+        "mobilesdk_app_id": "1:257953670571:android:b6091083a31426808f5eee",
         "android_client_info": {
           "package_name": "com.uop.ct_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "300124642417-a5709253tqbu9pmm2advbj3m3uei8qif.apps.googleusercontent.com",
+          "client_id": "257953670571-77ebu0g3k8cg07gj9a8a08og2dl38o18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uop.ct_app",
+            "certificate_hash": "09ac23c698044619b5e85982d5967d200abd8b05"
+          }
+        },
+        {
+          "client_id": "257953670571-4lv4q4m9dj9g7586nh75770n63e35v13.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyALggc0gE0qf3WcHN5Pcu5EwcQNPiRNMx0"
+          "current_key": "AIzaSyBRBBw2hAV5kouE3vVyWaAcQzo8GgQz2V8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "300124642417-a5709253tqbu9pmm2advbj3m3uei8qif.apps.googleusercontent.com",
+              "client_id": "257953670571-4lv4q4m9dj9g7586nh75770n63e35v13.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
