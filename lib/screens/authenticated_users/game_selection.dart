@@ -1,6 +1,9 @@
 import 'package:ct_app/screens/authenticated_users/games/guess_the_word.dart';
 import 'package:ct_app/services/matchmaking.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ct_app/screens/authenticated_users/loading.dart';
+import 'package:ct_app/services/database.dart';
 
 class GameSelection extends StatefulWidget {
   const GameSelection({Key? key}) : super(key: key);
@@ -10,7 +13,15 @@ class GameSelection extends StatefulWidget {
 }
 
 class _GameSelectionState extends State<GameSelection> {
-  final MatchMaking _match = MatchMaking();
+  //final MatchMaking _match = MatchMaking();
+  late DatabaseService database;
+  //need to acquire uid for to create db instance
+  _GameSelectionState(){
+    final user = FirebaseAuth.instance.currentUser;
+    if(user != null) {
+      database = DatabaseService(uid: user.uid);
+    }
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -33,13 +44,9 @@ class _GameSelectionState extends State<GameSelection> {
                     TextButton(
                       child: const Text('Play'),
                       onPressed: () {
-                        //add user to queue
-                        _match.enterQueue();
-
-                        //change screen to a loading screen
                         Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const GuessTheWord(timer:120))
-                        );
+                            MaterialPageRoute(builder: (BuildContext context) =>
+                           Loading(database)));
                       },
                     ),
                   ],
