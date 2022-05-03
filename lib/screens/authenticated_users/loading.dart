@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ct_app/models/game_search.dart';
 import 'package:ct_app/screens/authenticated_users/games/guess_the_word.dart';
 import 'package:flutter/material.dart';
-import 'package:ct_app/services/matchmaking.dart';
 import 'package:ct_app/services/database.dart';
 
 class Loading extends StatelessWidget {
@@ -12,19 +12,17 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      //listenting to matchmaking table
+      //reading collections of matchmaking
       body: FutureBuilder<List<QueryDocumentSnapshot<dynamic>> >(builder: (_, snapshot) {
-
-
-
-        print("DatabaseService => ${snapshot.data} _ ${snapshot.error}");
-       if (snapshot.hasData) {
-          return GuessTheWord(timer: 120);
+        final mappedData = snapshot.data?.map((e) => GameSearch.fromJson(e.data()) ).toList();
+        if (snapshot.hasData) {
+          return GuessTheWord(timer: 120, games: mappedData!,);
         }
         return const Center(
           child: CircularProgressIndicator(),
         );
-      }, future: databaseService?.lookingFor("Guess What it is"),)
+       //value hard-coded for demo purposes
+      }, future: databaseService?.lookingFor("Guess the image"),)
     );
   }
 }
