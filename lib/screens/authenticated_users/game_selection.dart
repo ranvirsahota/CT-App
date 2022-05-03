@@ -1,5 +1,3 @@
-import 'package:ct_app/screens/authenticated_users/games/guess_the_word.dart';
-import 'package:ct_app/services/matchmaking.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ct_app/screens/authenticated_users/loading.dart';
