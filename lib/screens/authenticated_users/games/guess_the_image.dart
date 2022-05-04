@@ -5,12 +5,13 @@ import 'package:ct_app/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
+import '../../../shared/fixed_styles.dart';
+
 class GuessTheWord extends StatefulWidget {
   final int timer;
   final List<GameSearch> games;
   final List<DocumentReference>? docRefs;
   final String? username;
-
   final DatabaseService? databaseService;
 
   const GuessTheWord(this.docRefs, this.username, this.databaseService,  {Key? key,
@@ -21,6 +22,8 @@ class GuessTheWord extends StatefulWidget {
 }
 
 class _GuessTheWordState extends State<GuessTheWord> {
+  late Message message;
+
   @override
   void initState() {
     super.initState();
@@ -99,7 +102,30 @@ class _GuessTheWordState extends State<GuessTheWord> {
               },
               stream: widget.databaseService!.fetchMessages(),
             ),
-          )
+          ),
+          Column (
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Form (
+                  child: TextFormField (
+                    decoration: textFormFieldDecoration.copyWith(hintText: "type something"),
+                    validator: (val) => val!.isEmpty ? "Input something" : null,
+                    onChanged: (val) {
+                      setState (() =>  message = Message(text: val, text_from: "user", messageId: "messageId"));
+                    },
+                  )
+              ),
+              const SizedBox(width: 12,),
+              IconButton(
+                icon: const Icon(Icons.send),
+                onPressed: () {
+                  //send message
+                  widget.databaseService?.sendMessage(message);
+
+                },
+              ),
+            ],
+          ),
         ],
       )
   );
