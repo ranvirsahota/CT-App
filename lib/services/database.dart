@@ -108,6 +108,12 @@ class DatabaseService {
   }
 
   //add to message collection
+  void sendMessage(Message message){
+    getUserDoc((curUserMatchId) {
+      //this currently prints out into a new document
+      games.doc(gameId).collection("messages").add(message.toJson());
+    });
+  }
 
   //gets all messages in collection under where document id is equal to cruUserMatchId
   Stream<List<Message>> fetchMessages(){
