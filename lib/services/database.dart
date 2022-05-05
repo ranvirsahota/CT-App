@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ct_app/models/game_search.dart';
 import 'package:ct_app/models/message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class DatabaseService {
   late final String uid;
@@ -74,7 +73,8 @@ class DatabaseService {
     final existingMatch = games.where("match_id", isEqualTo: matchId).get();
     existingMatch.then((event) async {
       if (event.docs.isEmpty) {
-        final msgDoc =  games.doc();
+        //matchID is now gamesDoc id
+        final msgDoc =  games.doc(matchId);
         gameId = msgDoc.id;
         await msgDoc.set({"match_id": matchId});
       }
@@ -111,7 +111,7 @@ class DatabaseService {
   void sendMessage(Message message){
     getUserDoc((curUserMatchId) {
       //this currently prints out into a new document
-      games.doc(gameId).collection("messages").add(message.toJson());
+      games.doc(curUserMatchId).collection("messages").add(message.toJson());
     });
   }
 
