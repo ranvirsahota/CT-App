@@ -2,7 +2,7 @@
 
 A cognitive traning app for those 60 years or older with no illness
 
-To install:
+To install (ANDROID ONLY):
 1. Navigate to the realease page click/tap on the latest release
 2. Scroll down to assets and download the file with the .apk exetension
 3. When downloaded open it and your phone should beign the installion, you may also recive a prompt to confrim you do wish to download the app
